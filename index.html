@@ -570,16 +570,39 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   color: rgba(240,214,138,0.7);
   margin-top: 60px;
 }
-.footer-emblem { width: 72px; height: 72px; margin: 0 auto 24px; opacity: 0.6; }
-.footer-quote { font-size: 18px; letter-spacing: 4px; margin-bottom: 6px; }
-.footer-quote-sub { font-size: 14px; letter-spacing: 3px; opacity: 0.6; }
+.footer-emblem {
+  width: 96px; height: 96px;
+  margin: 0 auto 28px;
+  animation: emblem-glow 3s ease-in-out infinite;
+}
+.footer-quote {
+  font-size: 18px;
+  letter-spacing: 4px;
+  margin-bottom: 6px;
+  text-shadow: 0 0 20px rgba(212,168,67,0.3);
+}
+.footer-quote-sub { font-size: 14px; letter-spacing: 3px; }
 .footer-divider {
-  width: 80px; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,168,67,0.5), var(--gold-light), rgba(212,168,67,0.5), transparent);
   margin: 28px auto;
 }
-.footer-memorial { font-size: 15px; letter-spacing: 3px; margin-bottom: 8px; }
-.footer-years { font-size: 20px; letter-spacing: 6px; color: var(--gold); margin-bottom: 24px; }
+.footer-memorial {
+  font-size: 15px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 16px rgba(212,168,67,0.2);
+}
+.footer-years {
+  font-size: 22px;
+  letter-spacing: 8px;
+  background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 2px 6px rgba(180,130,50,0.35));
+}
 .footer-copy { font-size: 12px; opacity: 0.4; letter-spacing: 2px; }
 
 /* === Back to Top === */
