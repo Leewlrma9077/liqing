@@ -419,6 +419,21 @@ body {
   .tl-dot { width: 14px; height: 14px; border-width: 2px; }
   .tl-year { margin-top: 0; font-size: 14px; }
   .tl-label { margin-top: 0; }
+
+  /* Mobile responsive */
+  .hero-name { font-size: 36px; letter-spacing: 6px; }
+  .hero-sub { font-size: 16px; letter-spacing: 3px; }
+  .hero-honorary { font-size: 13px; padding: 6px 18px; }
+  .party-emblem { width: 80px; height: 80px; }
+  .card { padding: 24px 18px; margin: 20px 0; }
+  .card h3 { font-size: 17px; }
+  body { font-size: 15px; }
+  .info-grid { grid-template-columns: 90px 1fr; gap: 6px 12px; font-size: 14px; }
+  .site-nav ul { gap: 12px; }
+  .site-nav a { font-size: 12px; letter-spacing: 1px; }
+  .photo-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+  .lb-prev, .lb-next { padding: 10px 14px; font-size: 24px; }
+  .lb-close { top: 12px; right: 16px; font-size: 28px; }
 }
 
 /* === Blockquote === */
@@ -546,6 +561,12 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 .back-to-top:hover { color: var(--gold); }
 
 /* === Responsive === */
+@media (max-width: 1024px) {
+  .hero-name { font-size: 48px; letter-spacing: 10px; }
+  .card { padding: 36px 32px; }
+  .site-nav ul { gap: 18px; }
+}
+
 @media (max-width: 640px) {
   .hero-name { font-size: 36px; letter-spacing: 8px; }
   .hero-sub { font-size: 17px; letter-spacing: 4px; }
