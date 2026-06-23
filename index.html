@@ -76,6 +76,29 @@ body {
 .card ul, .card ol { margin: 12px 0 20px 2em; }
 .card li { margin-bottom: 8px; }
 
+/* === Gold Section Divider === */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0 0;
+  opacity: 0.5;
+}
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.section-divider .divider-star {
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 12px;
+  margin: 0 18px;
+  letter-spacing: 3px;
+}
+
 /* === Hero === */
 .hero {
   position: relative;
@@ -160,10 +183,20 @@ body {
   transform: translateX(-50%);
   z-index: 3;
   animation: breathe 2s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
 .scroll-arrow {
   color: rgba(212,168,67,0.6);
   font-size: 24px;
+  line-height: 1;
+}
+.scroll-text {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: rgba(212,168,67,0.45);
 }
 @keyframes breathe {
   0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
@@ -428,6 +461,7 @@ body {
   .card { padding: 24px 18px; margin: 20px 0; }
   .card h3 { font-size: 17px; }
   body { font-size: 15px; }
+  .section-divider { margin: 28px 0 0; }
   .info-grid { grid-template-columns: 90px 1fr; gap: 6px 12px; font-size: 14px; }
   .site-nav ul { gap: 12px; }
   .site-nav a { font-size: 12px; letter-spacing: 1px; }
@@ -575,6 +609,7 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   .party-emblem { width: 90px; height: 90px; }
   .card { padding: 24px 20px; }
   .card h2 { font-size: 22px; letter-spacing: 2px; }
+  .section-divider { margin: 24px 0 0; }
   .info-grid { grid-template-columns: 90px 1fr; }
   .site-nav a { padding: 10px 10px; font-size: 12px; letter-spacing: 1px; }
   .photo-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
@@ -648,6 +683,7 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   </div>
   <div class="scroll-hint">
     <span class="scroll-arrow">&#x25BC;</span>
+    <span class="scroll-text">向下滚动</span>
   </div>
 </header>
 
@@ -695,6 +731,8 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
     <span class="tag">中国棉花学会副理事长</span>
   </div>
 </section>
+
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
 
 <!-- ═══════════════════ 一、早年投身革命 ═══════════════════ -->
 <section id="revolution" class="section card">
@@ -769,12 +807,16 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <p>解放战争时期，李庆同志在<strong>太行五地委党校</strong>工作，先后担任过秘书、副校长、总支副书记，为解放区培养了大批干部，为解放新区输送了大批人才，为夺取中国革命最终胜利作出了自己的贡献。</p>
 </section>
 
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
+
 <!-- ═══════════════════ 二、社会主义建设初期 ═══════════════════ -->
 <section id="socialist" class="section card">
   <h2>二、社会主义建设初期（1949—1957）</h2>
 
   <p>解放初期至1957年，李庆同志主要在安阳地委工作。在此期间，他曾任<strong>地委宣传部教育科长、副部长、部长</strong>等职务，后担任<strong>安阳专员公署副专员</strong>。他带领干部职工宣传党的路线、方针、政策，生活在群众中，战斗工作在第一线，领导和帮助群众解决大量实际问题，为完成新民主主义革命任务、建设社会主义作出了应有的贡献。</p>
 </section>
+
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
 
 <!-- ═══════════════════ 三、棉花研究所时期 ═══════════════════ -->
 <section id="cotton" class="section card">
@@ -803,6 +845,8 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <p>"文化大革命"期间，李庆同志受到极左路线的冲击，遭受严重迫害，身心受到摧残。但他仍坚持党性原则，保持革命气节，表现出了一个革命者的优秀品质。</p>
 </section>
 
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
+
 <!-- ═══════════════════ 四、重返工作岗位 ═══════════════════ -->
 <section id="return" class="section card">
   <h2>四、重返工作岗位（1973—1983）</h2>
@@ -820,6 +864,8 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <p>1981年11月5日至10日，中国棉花学会在郑州召开第三次全国棉花学术讨论会，125名代表参会。李庆同志以中国棉花学会副理事长身份<strong>致开幕词并主持了会议</strong>，并发表论文《<strong>棉花高优稳低综是发展棉花生产的方向</strong>》，系统提出"高产、优质、稳产、低成本、综合发展"的棉花生产方针，对全国棉花生产具有普遍指导意义，该文后被《江西棉花科技通讯》转载。</p>
 </section>
 
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
+
 <!-- ═══════════════════ 五、离休之后 ═══════════════════ -->
 <section id="retirement" class="section card">
   <h2>五、离休之后（1983—1999）</h2>
@@ -828,6 +874,8 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 
   <p>在病中他还不忘厅里工作，多次询问厅里工作情况。在自己的后事处理上，<strong>他嘱咐亲属要一切从简，服从组织的安排</strong>，充分表现了一个老党员、老干部的马列主义唯物主义信念，表现了一个革命者的高风亮节和高尚情操。</p>
 </section>
+
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
 
 <!-- ═══════════════════ 六、一生评价 ═══════════════════ -->
 <section id="evaluation" class="section card">
@@ -859,6 +907,8 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 
   <div class="obituary-date">一九九九年十二月二十五日</div>
 </section>
+
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
 
 <!-- ═══════════════════ 七、重要著述 ═══════════════════ -->
 <section id="writings" class="section card">
@@ -896,6 +946,8 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
     </tbody>
   </table>
 </section>
+
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
 
 <!-- ═══════════════════ 历史照片墙 ═══════════════════ -->
 <section id="photos" class="section card">
@@ -971,6 +1023,8 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
     </div>
   </div>
 </section>
+
+<div class="section-divider"><span class="divider-star">&#10033;</span></div>
 
 <!-- ═══════════════════ 八、参考资料 ═══════════════════ -->
 <section id="references" class="section card">
