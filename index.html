@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>李庆同志 — 中国共产党的忠诚战士</title>
+<meta name="description" content="李庆同志（1917-1999），离休老红军，原河南省农业厅副厅长，中国棉花学会副理事长。革命的一生，战斗的一生。">
+<style>
+/* === CSS Custom Properties === */
+:root {
+  --red-deep: #8B1A1A;
+  --red-dark: #3D1C1C;
+  --red-darker: #1A0A0A;
+  --gold: #D4A843;
+  --gold-light: #F0D68A;
+  --gold-dark: #B8860B;
+  --card-bg: #FFFEF9;
+  --text: #2C2416;
+  --muted: #6B5E4A;
+  --border: #D4C5A9;
+  --tag-bg: #F0E6D3;
+  --highlight: #FDF3E0;
+}
+
+/* === Reset & Base === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", "Songti SC", Georgia, serif;
+  background: #F5F0E8;
+  color: var(--text);
+  line-height: 1.95;
+  font-size: 17px;
+  overflow-x: hidden;
+}
+
+/* === Universal section animations === */
+.section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.wrapper { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 48px 52px;
+  margin: 36px 0;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+}
+.card h2 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  border-bottom: 2px solid var(--red-deep);
+  padding-bottom: 14px;
+  margin-bottom: 32px;
+  color: var(--red-deep);
+  position: relative;
+}
+.card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 36px 0 14px;
+  color: #5A2828;
+  letter-spacing: 2px;
+  padding-left: 14px;
+  border-left: 3px solid var(--gold);
+}
+.card p { margin-bottom: 18px; text-indent: 2em; }
+.card ul, .card ol { margin: 12px 0 20px 2em; }
+.card li { margin-bottom: 8px; }
+
+/* === Hero === */
+.hero {
+  background: linear-gradient(180deg, var(--red-darker) 0%, var(--red-dark) 50%, #7a3b1e 85%, var(--gold-dark) 100%);
+  color: #F5F0E0;
+  text-align: center;
+  padding: 80px 24px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="2" fill="rgba(255,255,255,0.06)"/><circle cx="65" cy="15" r="1.5" fill="rgba(255,255,255,0.04)"/><circle cx="80" cy="60" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="10" cy="75" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="80" r="2" fill="rgba(255,255,255,0.03)"/></svg>');
+  pointer-events: none;
+}
+.hero-emblem {
+  margin-bottom: 20px;
+  position: relative;
+}
+.hero-emblem svg {
+  width: 80px;
+  height: 80px;
+}
+.hero h1 {
+  font-size: 52px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  margin-bottom: 8px;
+  position: relative;
+}
+.hero .sub {
+  font-size: 20px;
+  letter-spacing: 4px;
+  opacity: 0.9;
+  position: relative;
+}
+.hero .honorary {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 6px 22px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  font-size: 14px;
+  letter-spacing: 4px;
+  opacity: 0.85;
+  position: relative;
+}
+.hero .dates {
+  margin-top: 16px;
+  font-size: 16px;
+  letter-spacing: 3px;
+  opacity: 0.7;
+  position: relative;
+}
+
+/* === Navigation === */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(61, 28, 28, 0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--gold-dark);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+.site-nav li { flex-shrink: 0; }
+.site-nav a {
+  display: block;
+  padding: 12px 14px;
+  color: #E8D5A3;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: color 0.2s, background 0.2s;
+}
+.site-nav a:hover,
+.site-nav a:focus {
+  color: #FFF;
+  background: rgba(255,255,255,0.08);
+}
+
+/* === Info Grid === */
+.info-grid {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 8px 20px;
+  margin: 20px 0;
+  font-size: 16px;
+}
+.info-grid dt {
+  font-weight: 700;
+  color: var(--red-deep);
+  text-align: right;
+}
+.info-grid dd { margin: 0; }
+
+/* === Tags === */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+.tag {
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+
+/* === Timeline === */
+.timeline { position: relative; padding-left: 32px; margin: 24px 0; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.tl-item { position: relative; margin-bottom: 22px; }
+.tl-item::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--red-deep);
+  border: 2px solid #F5F0E8;
+}
+.tl-year {
+  font-weight: 800;
+  color: var(--red-deep);
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+.tl-text { margin-top: 2px; }
+
+/* === Blockquote === */
+blockquote {
+  margin: 24px 0;
+  padding: 20px 28px;
+  background: var(--highlight);
+  border-left: 4px solid var(--red-deep);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+}
+blockquote p { text-indent: 0 !important; }
+blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-style: normal; }
+
+/* === Character sub-sections === */
+.char-subsection {
+  margin: 28px 0;
+}
+.char-subsection .char-icon {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+/* === Writings Table === */
+.cv-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+}
+.cv-table th, .cv-table td {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.cv-table th {
+  background: #F5EDE0;
+  font-weight: 700;
+  color: var(--red-deep);
+  white-space: nowrap;
+}
+.cv-table tr:nth-child(even) td { background: #FDFAF5; }
+
+/* === Photo Section === */
+.photo-section { margin: 24px 0; }
+.photo-section h3 {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  font-weight: 500;
+  border: none;
+  padding: 0;
+}
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.photo-item {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #FAF7F0;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.photo-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.photo-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.photo-item figcaption {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* === Obituary date === */
+.obituary-date {
+  text-align: right;
+  font-size: 15px;
+  color: var(--muted);
+  margin-top: 30px;
+  letter-spacing: 2px;
+}
+
+/* === Footer === */
+.site-footer {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 2px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+
+/* === Back to Top === */
+.back-to-top {
+  display: block;
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+.back-to-top:hover { color: var(--red-deep); }
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 32px; letter-spacing: 4px; }
+  .card { padding: 24px 20px; }
+  .card h2 { font-size: 22px; letter-spacing: 2px; }
+  .info-grid { grid-template-columns: 90px 1fr; }
+  .site-nav a { padding: 10px 10px; font-size: 12px; letter-spacing: 1px; }
+  .photo-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<header class="hero">
+  <div class="hero-emblem">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sickle (镰刀) -->
+      <path d="M16 64 Q10 48 12 34 Q14 22 24 14 Q28 12 26 16 Q20 24 18 34 Q16 44 20 58 Z"
+            fill="#D4A843" stroke="#D4A843" stroke-width="0.5"/>
+      <!-- Hammer handle (锤柄) -->
+      <rect x="38" y="22" width="6" height="48" rx="2" fill="#D4A843"/>
+      <!-- Hammer head (锤头) -->
+      <path d="M22 6 L60 6 Q62 6 62 8 L62 22 Q62 24 60 24 L22 24 Q20 24 20 22 L20 8 Q20 6 22 6 Z"
+            fill="#D4A843"/>
+    </svg>
+  </div>
+  <h1>李 庆</h1>
+  <div class="sub">中国共产党的忠诚战士</div>
+  <div class="honorary">离休老红军</div>
+  <div class="dates">1917年10月 — 1999年12月21日 · 享年83岁</div>
+</header>
+
+<!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
+<nav class="site-nav" id="nav">
+  <ul>
+    <li><a href="#info">基本信息</a></li>
+    <li><a href="#revolution">早年革命</a></li>
+    <li><a href="#socialist">建设初期</a></li>
+    <li><a href="#cotton">棉花研究所</a></li>
+    <li><a href="#return">重返岗位</a></li>
+    <li><a href="#retirement">离休之后</a></li>
+    <li><a href="#evaluation">一生评价</a></li>
+    <li><a href="#writings">重要著述</a></li>
+    <li><a href="#photos">历史照片</a></li>
+    <li><a href="#references">参考资料</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="wrapper">
+
+<!-- ═══════════════════ 基本信息 ═══════════════════ -->
+<section id="info" class="section card">
+  <h2>基本信息</h2>
+  <dl class="info-grid">
+    <dt>姓名</dt><dd>李庆</dd>
+    <dt>出生年月</dt><dd>1917年10月</dd>
+    <dt>籍贯</dt><dd>山西省灵丘县下关村</dd>
+    <dt>民族</dt><dd>汉族</dd>
+    <dt>文化程度</dt><dd>初中</dd>
+    <dt>参加革命</dt><dd>1937年4月</dd>
+    <dt>入党时间</dt><dd>1940年9月</dd>
+    <dt>离休时间</dt><dd>1983年11月（经中共河南省委批准）</dd>
+    <dt>逝世</dt><dd>1999年12月21日10时5分，于郑州逝世，享年83岁</dd>
+    <dt>最后职务</dt><dd>中共河南省农业厅党组成员、副厅长</dd>
+    <dt>荣誉称号</dt><dd>离休老红军</dd>
+  </dl>
+  <div class="tags">
+    <span class="tag">老红军</span>
+    <span class="tag">抗日战士（三次负伤）</span>
+    <span class="tag">棉花专家</span>
+    <span class="tag">中棉所首任副所长</span>
+    <span class="tag">省棉花学会首届理事长</span>
+    <span class="tag">中国棉花学会副理事长</span>
+  </div>
+</section>
+
+<!-- ═══════════════════ 一、早年投身革命 ═══════════════════ -->
+<section id="revolution" class="section card">
+  <h2>一、早年投身革命</h2>
+
+  <p>李庆同志出身贫苦，早年为了翻身求解放投身革命。在党的培养教育下，逐步成长为一名坚定的共产主义战士。</p>
+
+  <h3>抗日战争时期</h3>
+  <p>抗日战争初期，他出生入死，不怕牺牲，英勇作战，<strong>曾三次负伤</strong>，为抗击日本帝国主义的侵略，保卫家乡，保卫祖国山河立下不朽功勋。</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1937年4月</div>
+      <div class="tl-text">参加革命工作，加入山西省灵丘县<strong>抗日牺牲救国同盟会</strong>（牺盟会），投身抗日救亡运动。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1937—1940年</div>
+      <div class="tl-text">参加<strong>山西抗日决死纵队</strong>（山西青年抗敌决死队），任战士，在抗日战场上出生入死，英勇作战，三次负伤。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1940年9月</div>
+      <div class="tl-text">加入<strong>中国共产党</strong>。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1940—1945年</div>
+      <div class="tl-text">先后在<strong>晋冀鲁豫联合办事处</strong>、<strong>河北省涉县三区和一区</strong>工作，担任区长、区委委员。在涉县期间，根据党的指示，在当地积极组织农会发展生产，发展新党员，宣传党的抗日方针政策，不断壮大党的队伍，扩大党的影响，巩固我党抗日根据地，积极支援抗日前线，为抗日战争的最后胜利作出了贡献。</div>
+    </div>
+  </div>
+
+  <h3>解放战争时期</h3>
+  <p>解放战争时期，李庆同志在<strong>太行五地委党校</strong>工作，先后担任过秘书、副校长、总支副书记，为解放区培养了大批干部，为解放新区输送了大批人才，为夺取中国革命最终胜利作出了自己的贡献。</p>
+</section>
+
+<!-- ═══════════════════ 二、社会主义建设初期 ═══════════════════ -->
+<section id="socialist" class="section card">
+  <h2>二、社会主义建设初期（1949—1957）</h2>
+
+  <p>解放初期至1957年，李庆同志主要在安阳地委工作。在此期间，他曾任<strong>地委宣传部教育科长、副部长、部长</strong>等职务，后担任<strong>安阳专员公署副专员</strong>。他带领干部职工宣传党的路线、方针、政策，生活在群众中，战斗工作在第一线，领导和帮助群众解决大量实际问题，为完成新民主主义革命任务、建设社会主义作出了应有的贡献。</p>
+</section>
+
+<!-- ═══════════════════ 三、棉花研究所时期 ═══════════════════ -->
+<section id="cotton" class="section card">
+  <h2>三、棉花研究所时期（1958—1966）</h2>
+
+  <h3>建所背景与迁所安阳</h3>
+  <p>1957年8月，国务院科学规划委员会批准在北京成立<strong>中国农业科学院棉花研究所</strong>。1958年3月，因北京自然条件对棉花科研不具代表性，研究所整建制迁至<strong>河南省安阳县白壁镇大寒村</strong>，地处冀鲁豫晋四省棉区交汇处。</p>
+
+  <p>1958年至1966年，李庆同志<strong>任中国农科院棉花研究所副所长</strong>（主持党政工作），与冯泽芳所长、胡竟良副所长等组成首任领导班子。他以高度的事业心和责任感，深入基层调查研究，认真贯彻执行党的路线、方针政策，重视农业科技在生产中的运用，为中棉所的建设和发展奠定了重要基础。</p>
+
+  <h3>推动棉花科研为生产服务</h3>
+  <p>在此期间，李庆同志积极参与全国棉花科研工作的组织与推动：</p>
+  <ul>
+    <li><strong>1958年6月</strong>：在全国棉花高额丰产技术座谈会上作报告《千斤皮棉的堡垒一定能攻下来》（刊于《棉花知识》1958年第01期），来自11个省（区）的棉花丰产代表参会。</li>
+    <li><strong>1958年7月5日</strong>：在全国棉花群众选种座谈会上作报告《依靠群众进行选种》（刊于《棉花知识》1958年第02期），提出"群众与专家相结合"的棉花育种路线。</li>
+    <li><strong>1958年10月</strong>：参与组织<strong>中苏棉花考察团</strong>，由冯泽芳任团长、李庆任副团长，一行15人先后考察河南、山东、河北、山西、陕西、湖北六省棉花生产。</li>
+    <li><strong>1959年</strong>：在第二次全国棉花试验研究工作会议上作主题报告《继续破除迷信 彻底解放思想 为棉花科学研究更大的跃进而奋斗》（刊于《棉花》1959年第01期）。</li>
+  </ul>
+
+  <blockquote>
+    <p>"刚开过的棉花丰产座谈会和这次棉花群众选种座谈会都是中国植棉史上没有过的事情，这次会很重要，是棉花选种上的转折点，是群众和专家相结合的开始，是党的一条路线——群众路线。"</p>
+    <footer>—— 李庆，《依靠群众进行选种》，1958年7月5日</footer>
+  </blockquote>
+
+  <h3>"文革"期间</h3>
+  <p>"文化大革命"期间，李庆同志受到极左路线的冲击，遭受严重迫害，身心受到摧残。但他仍坚持党性原则，保持革命气节，表现出了一个革命者的优秀品质。</p>
+</section>
+
+<!-- ═══════════════════ 四、重返工作岗位 ═══════════════════ -->
+<section id="return" class="section card">
+  <h2>四、重返工作岗位（1973—1983）</h2>
+
+  <h3>恢复工作</h3>
+  <p>1973年3月，李庆同志重新出来工作，任<strong>河南省农林局核心组成员</strong>。粉碎"四人帮"以后，历任<strong>省农业局核心组成员、党组成员、副局长，省农业厅党组成员、副厅长</strong>，并兼任<strong>省政府棉花办公室主任</strong>、<strong>省棉花学会第一届理事长</strong>、<strong>中国棉花学会副理事长</strong>。他坚决拥护党的十一届三中全会以来的路线、方针和政策，解放思想，实事求是，努力工作，为全省棉花生产作出了积极贡献。</p>
+
+  <h3>深入一线推广植棉新技术</h3>
+  <p>李庆同志经常深入基层、深入田间地头，与农民交朋友，宣传推广<strong>麦棉套种、生物防治、地膜覆盖、营养钵育苗</strong>等植棉新技术，为我国特别是河南省棉花增产、农民增收作出了极大贡献，<strong>被誉为棉花专家</strong>，闻名省内外。</p>
+
+  <h3>组织领导海南南繁制种（1975年）</h3>
+  <p>1975年秋，时任河南省棉花办公室主任的李庆同志，为推动杂交棉在河南的推广，亲自带队，组织约60名来自南阳和商丘地区的青年学员，远赴<strong>海南三亚</strong>开展大规模冬季棉花杂交制种与现场培训。此次活动历时一个多月，圆满完成制种任务，并编印了《棉花杂种优势利用》讲义。河南杂交棉面积随后扩展至十余万亩，河南成为全国杂交棉第一省。此次南繁行动被后人评价为"空前绝后"，是中国南繁事业早期的重要实践。</p>
+
+  <h3>主持第三次全国棉花学术讨论会（1981年）</h3>
+  <p>1981年11月5日至10日，中国棉花学会在郑州召开第三次全国棉花学术讨论会，125名代表参会。李庆同志以中国棉花学会副理事长身份<strong>致开幕词并主持了会议</strong>，并发表论文《<strong>棉花高优稳低综是发展棉花生产的方向</strong>》，系统提出"高产、优质、稳产、低成本、综合发展"的棉花生产方针，对全国棉花生产具有普遍指导意义，该文后被《江西棉花科技通讯》转载。</p>
+</section>
+
+<!-- ═══════════════════ 五、离休之后 ═══════════════════ -->
+<section id="retirement" class="section card">
+  <h2>五、离休之后（1983—1999）</h2>
+
+  <p>1983年11月，李庆同志经中共河南省委批准离职休养。离休后，他仍然一如既往地关心全省农业和农村工作，关心农业厅各项事业的发展，支持历届领导班子开展工作。他时刻关注国内外大事，在政治上始终和党中央保持一致。<strong>在1989年春夏之交的政治风波中，他旗帜鲜明地反对动乱，坚决拥护党中央的果断决策。</strong></p>
+
+  <p>在病中他还不忘厅里工作，多次询问厅里工作情况。在自己的后事处理上，<strong>他嘱咐亲属要一切从简，服从组织的安排</strong>，充分表现了一个老党员、老干部的马列主义唯物主义信念，表现了一个革命者的高风亮节和高尚情操。</p>
+</section>
+
+<!-- ═══════════════════ 六、一生评价 ═══════════════════ -->
+<section id="evaluation" class="section card">
+  <h2>六、一生评价</h2>
+
+  <blockquote>
+    <p>李庆同志一生追求进步，追求革命。他的一生，是革命的一生、战斗的一生，是清正廉洁、任劳任怨、勤奋工作的一生。</p>
+  </blockquote>
+
+  <article class="char-subsection">
+    <div class="char-icon">&#9733;</div>
+    <h3>政治品格</h3>
+    <p>在党的领导下，他努力学习马列主义、毛泽东思想和邓小平理论，具有丰富的实践经验。他对党的事业忠心耿耿，任劳任怨。他顾全大局、胸怀博大、不计较个人得失。在1989年春夏之交的政治风波中，他立场坚定、旗帜鲜明，坚决拥护党中央的决策。</p>
+  </article>
+
+  <article class="char-subsection">
+    <div class="char-icon">&#9733;</div>
+    <h3>工作作风</h3>
+    <p>他作风扎实，对工作严肃认真，实事求是，善于把握大局。他经常深入基层、深入田间地头，与农民交朋友，被誉为棉花专家。</p>
+  </article>
+
+  <article class="char-subsection">
+    <div class="char-icon">&#9733;</div>
+    <h3>为人品德</h3>
+    <p>他为人正派，光明磊落，平易近人，关心同志。他长期在领导岗位上工作，对自己以及亲属要求严格，生活俭朴，不搞特殊，保持了党的优良传统和作风，深受广大干部和群众的爱戴。</p>
+  </article>
+
+  <p>李庆同志的逝世，使我党失去了一位好同志、好干部、好党员。我们要以李庆同志为榜样，学习他忠于党、忠于人民、忠于革命事业，忘我工作、实事求是、勤政廉政、克己奉公、无私奉献的精神。</p>
+
+  <div class="obituary-date">一九九九年十二月二十五日</div>
+</section>
+
+<!-- ═══════════════════ 七、重要著述 ═══════════════════ -->
+<section id="writings" class="section card">
+  <h2>七、重要著述</h2>
+
+  <table class="cv-table">
+    <thead>
+      <tr><th>序号</th><th>篇名</th><th>时间</th><th>发表刊物/场合</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>《千斤皮棉的堡垒一定能攻下来》</td>
+        <td>1958年6月</td>
+        <td>全国棉花高额丰产技术座谈会报告 /《棉花知识》1958年第01期</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>《依靠群众进行选种》</td>
+        <td>1958年7月5日</td>
+        <td>全国棉花群众选种座谈会报告 /《棉花知识》1958年第02期</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>《继续破除迷信 彻底解放思想 为棉花科学研究更大的跃进而奋斗》</td>
+        <td>1959年</td>
+        <td>第二次全国棉花试验研究工作会议主题报告 /《棉花》1959年第01期</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>《棉花高优稳低综是发展棉花生产的方向》</td>
+        <td>1981年</td>
+        <td>第三次全国棉花学术讨论会（郑州）论文 / 转载于《江西棉花科技通讯》1981年第4期</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════ 历史照片墙 ═══════════════════ -->
+<section id="photos" class="section card">
+  <h2>历史照片墙</h2>
+
+  <div class="photo-section">
+    <h3>李庆同志肖像</h3>
+    <div class="photo-grid">
+      <figure class="photo-item" data-full="images/full_右一为李庆.webp">
+        <img src="images/thumb_右一为李庆.webp" alt="李庆同志（右一）" loading="lazy">
+        <figcaption>李庆同志（右一）</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_画面中间为李庆.webp">
+        <img src="images/thumb_画面中间为李庆.webp" alt="李庆同志（画面中间）" loading="lazy">
+        <figcaption>李庆同志（画面中间）</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="photo-section">
+    <h3>李庆同志在不同场合</h3>
+    <div class="photo-grid">
+      <figure class="photo-item" data-full="images/full_画面右侧.webp">
+        <img src="images/thumb_画面右侧.webp" alt="李庆同志（画面右侧）" loading="lazy">
+        <figcaption>李庆同志（画面右侧）</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_右一.webp">
+        <img src="images/thumb_右一.webp" alt="李庆同志（右一）" loading="lazy">
+        <figcaption>李庆同志（右一）</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_画面右1.webp">
+        <img src="images/thumb_画面右1.webp" alt="李庆同志（画面右一）" loading="lazy">
+        <figcaption>李庆同志（画面右一）</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_IMG_3985.webp">
+        <img src="images/thumb_IMG_3985.webp" alt="李庆同志" loading="lazy">
+        <figcaption>李庆同志</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_IMG_3986.webp">
+        <img src="images/thumb_IMG_3986.webp" alt="李庆同志" loading="lazy">
+        <figcaption>李庆同志</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_image0000001A.webp">
+        <img src="images/thumb_image0000001A.webp" alt="李庆同志历史照片" loading="lazy">
+        <figcaption>李庆同志</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_image0000002A.webp">
+        <img src="images/thumb_image0000002A.webp" alt="李庆同志历史照片" loading="lazy">
+        <figcaption>李庆同志</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="photo-section">
+    <h3>历史资料图片</h3>
+    <div class="photo-grid">
+      <figure class="photo-item" data-full="images/full_001.webp">
+        <img src="images/thumb_001.webp" alt="历史资料" loading="lazy">
+        <figcaption>历史资料（一）</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_002.webp">
+        <img src="images/thumb_002.webp" alt="历史资料" loading="lazy">
+        <figcaption>历史资料（二）</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_003.webp">
+        <img src="images/thumb_003.webp" alt="历史资料" loading="lazy">
+        <figcaption>历史资料（三）</figcaption>
+      </figure>
+      <figure class="photo-item" data-full="images/full_8x40-1.webp">
+        <img src="images/thumb_8x40-1.webp" alt="历史照片" loading="lazy">
+        <figcaption>历史照片</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 八、参考资料 ═══════════════════ -->
+<section id="references" class="section card">
+  <h2>八、参考资料</h2>
+  <ol>
+    <li>《李庆同志生平》，中共河南省农业厅党组，一九九九年十二月二十五日</li>
+    <li>中国农业科学院棉花研究所官网 — 历任领导 — 李庆
+      <br>cri.caas.cn/yjsgk/lrsld/lrsj/</li>
+    <li>《中国农业科学院棉花研究所历任所长、副所长名录》，《中国棉花》2007年第9期</li>
+    <li>李庆，《千斤皮棉的堡垒一定能攻下来》，《棉花知识》1958年第01期</li>
+    <li>李庆，《依靠群众进行选种》，《棉花知识》1958年第02期
+      <br>（收录于中国农业科学院机构知识库 agriir.cn）</li>
+    <li>李庆，《继续破除迷信 彻底解放思想 为棉花科学研究更大的跃进而奋斗》，《棉花》1959年第01期
+      <br>（收录于中国农业科学院机构知识库 agriir.cn）</li>
+    <li>李庆，《棉花高优稳低综是发展棉花生产的方向》，第三次全国棉花学术讨论会，郑州，1981年</li>
+    <li>吕青主编，《南繁小故事》，海南出版社（记述1975年海南棉花杂交制种经过）</li>
+    <li>汪若海，《棉花生涯五十年》，北京：中国农业科学技术出版社</li>
+    <li>《中国农业科学院志（1957—1997）》，中国农业科学技术出版社</li>
+  </ol>
+</section>
+
+</div><!-- /.wrapper -->
+</main>
+
+<footer class="site-footer">
+  <p>谨以此文纪念李庆同志</p>
+  <p style="margin-top:8px;">革命的一生 · 战斗的一生 · 清正廉洁、任劳任怨、勤奋工作的一生</p>
+  <a href="#nav" class="back-to-top">&#8593; 返回顶部</a>
+</footer>
+
+<script>
+// === Scroll-triggered section animations ===
+(function() {
+  var sections = document.querySelectorAll('.section');
+  var observer;
+
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    sections.forEach(function(section) {
+      observer.observe(section);
+    });
+  } else {
+    // Fallback: show all sections immediately
+    sections.forEach(function(section) {
+      section.classList.add('visible');
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
