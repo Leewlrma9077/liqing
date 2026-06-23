@@ -253,36 +253,173 @@ body {
   transform: translateY(-1px);
 }
 
-/* === Timeline === */
-.timeline { position: relative; padding-left: 32px; margin: 24px 0; }
-.timeline::before {
-  content: "";
+/* === Interactive Timeline === */
+.timeline-container {
+  position: relative;
+  margin: 40px 0;
+}
+.timeline-track {
+  position: relative;
+  overflow-x: auto;
+  padding: 40px 0 60px;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+.timeline-track::-webkit-scrollbar { height: 4px; }
+.timeline-track::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+.timeline-track::-webkit-scrollbar-track { background: transparent; }
+
+.timeline-line {
   position: absolute;
-  left: 8px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+  top: 56px;
+  left: 0;
+  right: 0;
+  height: 2px;
   background: var(--border);
+  pointer-events: none;
 }
-.tl-item { position: relative; margin-bottom: 22px; }
-.tl-item::before {
+.timeline-line::after {
   content: "";
   position: absolute;
-  left: -28px;
-  top: 6px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--red-deep);
-  border: 2px solid #F5F0E8;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: var(--gold);
+  transition: width 1.5s ease;
 }
+.timeline-line.animated::after { width: 100%; }
+
+.timeline-nodes {
+  display: flex;
+  gap: 60px;
+  padding: 0 40px;
+  position: relative;
+  min-width: max-content;
+}
+.tl-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.tl-node:hover { transform: translateY(-4px); }
+.tl-node:active { transform: translateY(-2px); }
+
+.tl-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 3px solid var(--border);
+  z-index: 2;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+.tl-node.visited .tl-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212,168,67,0.15);
+}
+.tl-node:last-child .tl-dot {
+  border-color: var(--red-deep);
+  background: var(--red-deep);
+  box-shadow: 0 0 0 4px rgba(139,26,26,0.12);
+}
+.tl-node:last-child.visited .tl-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212,168,67,0.15);
+}
+
 .tl-year {
+  margin-top: 12px;
   font-weight: 800;
-  color: var(--red-deep);
   font-size: 15px;
   letter-spacing: 2px;
+  color: var(--red-deep);
+  transition: color 0.3s;
+  white-space: nowrap;
 }
-.tl-text { margin-top: 2px; }
+.tl-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-top: 4px;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.tl-node.active .tl-label { color: var(--gold-dark); }
+
+.timeline-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+  background: linear-gradient(135deg, #FDF8F0, #FFFEF9);
+  border-radius: 6px;
+  border: 1px solid transparent;
+  margin-top: 0;
+}
+.timeline-detail.active {
+  max-height: 420px;
+  padding: 24px 28px;
+  margin-top: 24px;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,168,67,0.15), 0 0 20px rgba(212,168,67,0.08);
+}
+.tl-detail-inner {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.9;
+}
+.tl-detail-inner strong {
+  color: var(--red-deep);
+  letter-spacing: 2px;
+}
+
+/* Mobile: vertical timeline */
+@media (max-width: 768px) {
+  .timeline-track { overflow-x: visible; padding: 20px 0 20px 32px; }
+  .timeline-track::-webkit-scrollbar { display: none; }
+  .timeline-line {
+    top: 0;
+    bottom: 0;
+    left: 22px;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+  .timeline-line::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    transition: height 1.5s ease;
+  }
+  .timeline-line.animated::after {
+    height: 100%;
+    width: 100%;
+  }
+  .timeline-nodes {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0;
+    min-width: auto;
+  }
+  .tl-node {
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+  }
+  .tl-node:hover { transform: translateX(4px); }
+  .tl-dot { width: 14px; height: 14px; border-width: 2px; }
+  .tl-year { margin-top: 0; font-size: 14px; }
+  .tl-label { margin-top: 0; }
+}
 
 /* === Blockquote === */
 blockquote {
@@ -492,22 +629,63 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <h3>抗日战争时期</h3>
   <p>抗日战争初期，他出生入死，不怕牺牲，英勇作战，<strong>曾三次负伤</strong>，为抗击日本帝国主义的侵略，保卫家乡，保卫祖国山河立下不朽功勋。</p>
 
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-year">1937年4月</div>
-      <div class="tl-text">参加革命工作，加入山西省灵丘县<strong>抗日牺牲救国同盟会</strong>（牺盟会），投身抗日救亡运动。</div>
+  <!-- Interactive Timeline: full life journey -->
+  <div class="timeline-container" id="timeline">
+    <div class="timeline-track">
+      <div class="timeline-line"></div>
+      <div class="timeline-nodes">
+        <div class="tl-node" data-year="1917" data-detail="出生于山西省灵丘县下关村">
+          <span class="tl-dot"></span><span class="tl-year">1917</span>
+          <span class="tl-label">出生</span>
+        </div>
+        <div class="tl-node" data-year="1937" data-detail="参加山西省灵丘县抗日牺牲救国同盟会（牺盟会），投身抗日救亡运动">
+          <span class="tl-dot"></span><span class="tl-year">1937</span>
+          <span class="tl-label">参加革命</span>
+        </div>
+        <div class="tl-node" data-year="1937—1940" data-detail="参加山西抗日决死纵队，任战士，在抗日战场上出生入死，英勇作战，三次负伤">
+          <span class="tl-dot"></span><span class="tl-year">1937—1940</span>
+          <span class="tl-label">决死纵队</span>
+        </div>
+        <div class="tl-node" data-year="1940" data-detail="加入中国共产党">
+          <span class="tl-dot"></span><span class="tl-year">1940</span>
+          <span class="tl-label">入党</span>
+        </div>
+        <div class="tl-node" data-year="1940—1945" data-detail="先后在晋冀鲁豫联合办事处、河北省涉县三区和一区工作，担任区长、区委委员，组织农会发展生产，发展新党员，支援抗日前线">
+          <span class="tl-dot"></span><span class="tl-year">1940—1945</span>
+          <span class="tl-label">基层工作</span>
+        </div>
+        <div class="tl-node" data-year="1945—1949" data-detail="在太行五地委党校工作，先后担任秘书、副校长、总支副书记，为解放区培养大批干部">
+          <span class="tl-dot"></span><span class="tl-year">1945—1949</span>
+          <span class="tl-label">党校工作</span>
+        </div>
+        <div class="tl-node" data-year="1949—1957" data-detail="在安阳地委工作，曾任地委宣传部教育科长、副部长、部长，安阳专员公署副专员">
+          <span class="tl-dot"></span><span class="tl-year">1949—1957</span>
+          <span class="tl-label">安阳地委</span>
+        </div>
+        <div class="tl-node" data-year="1958" data-detail="任中国农科院棉花研究所副所长（主持党政工作），与冯泽芳所长等组成首任领导班子">
+          <span class="tl-dot"></span><span class="tl-year">1958</span>
+          <span class="tl-label">棉花研究所</span>
+        </div>
+        <div class="tl-node" data-year="1966—1973" data-detail="&ldquo;文革&rdquo;期间受到冲击，遭受严重迫害，但仍坚持党性原则，保持革命气节">
+          <span class="tl-dot"></span><span class="tl-year">1966—1973</span>
+          <span class="tl-label">文革时期</span>
+        </div>
+        <div class="tl-node" data-year="1973—1983" data-detail="重返工作岗位，任河南省农林局核心组成员、省农业厅副厅长，兼任省政府棉花办公室主任">
+          <span class="tl-dot"></span><span class="tl-year">1973—1983</span>
+          <span class="tl-label">重返岗位</span>
+        </div>
+        <div class="tl-node" data-year="1983" data-detail="经中共河南省委批准离职休养">
+          <span class="tl-dot"></span><span class="tl-year">1983</span>
+          <span class="tl-label">离休</span>
+        </div>
+        <div class="tl-node" data-year="1999" data-detail="于郑州逝世，享年83岁">
+          <span class="tl-dot"></span><span class="tl-year">1999</span>
+          <span class="tl-label">逝世</span>
+        </div>
+      </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-year">1937—1940年</div>
-      <div class="tl-text">参加<strong>山西抗日决死纵队</strong>（山西青年抗敌决死队），任战士，在抗日战场上出生入死，英勇作战，三次负伤。</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">1940年9月</div>
-      <div class="tl-text">加入<strong>中国共产党</strong>。</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-year">1940—1945年</div>
-      <div class="tl-text">先后在<strong>晋冀鲁豫联合办事处</strong>、<strong>河北省涉县三区和一区</strong>工作，担任区长、区委委员。在涉县期间，根据党的指示，在当地积极组织农会发展生产，发展新党员，宣传党的抗日方针政策，不断壮大党的队伍，扩大党的影响，巩固我党抗日根据地，积极支援抗日前线，为抗日战争的最后胜利作出了贡献。</div>
+    <div class="timeline-detail" id="timelineDetail">
+      <div class="tl-detail-inner"></div>
     </div>
   </div>
 
@@ -928,6 +1106,69 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 
   sections.forEach(function(item) {
     sectionObserver.observe(item.section);
+  });
+})();
+</script>
+
+<script>
+// === Interactive Timeline ===
+(function() {
+  var nodes = document.querySelectorAll('.tl-node');
+  var detail = document.getElementById('timelineDetail');
+  var track = document.querySelector('.timeline-track');
+  var line = document.querySelector('.timeline-line');
+  var activeNode = null;
+  if (!nodes.length || !detail || !line) return;
+
+  var detailInner = detail.querySelector('.tl-detail-inner');
+
+  // Line animation triggered by IntersectionObserver
+  var lineObserver = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      line.classList.add('animated');
+      lineObserver.unobserve(line);
+    }
+  }, { threshold: 0.3 });
+  lineObserver.observe(line);
+
+  // Summary label below detail panel
+  var summaryEl = document.createElement('div');
+  summaryEl.style.cssText = 'text-align:right;margin-top:12px;font-size:13px;color:var(--muted);letter-spacing:1px;display:none;';
+  summaryEl.id = 'timelineSummary';
+  detail.appendChild(summaryEl);
+
+  nodes.forEach(function(node, index) {
+    node.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Toggle off if clicking the already-active node
+      if (activeNode === node) {
+        node.classList.remove('active');
+        detail.classList.remove('active');
+        activeNode = null;
+        return;
+      }
+
+      // Remove active from all nodes
+      nodes.forEach(function(n) { n.classList.remove('active'); });
+
+      // Mark as visited and active
+      node.classList.add('visited', 'active');
+      detail.classList.add('active');
+      detailInner.innerHTML = '<strong>' + node.dataset.year + '年</strong> — ' + node.dataset.detail;
+
+      activeNode = node;
+
+      // Smooth-scroll track horizontally to keep node in view (desktop)
+      if (track && window.innerWidth > 768) {
+        var trackRect = track.getBoundingClientRect();
+        var nodeRect = node.getBoundingClientRect();
+        var nodeCenter = nodeRect.left + nodeRect.width / 2;
+        var trackCenter = trackRect.left + trackRect.width / 2;
+        var scrollOffset = nodeCenter - trackCenter;
+        track.scrollBy({ left: scrollOffset, behavior: 'smooth' });
+      }
+    });
   });
 })();
 </script>
