@@ -514,27 +514,36 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 }
 
 /* === Footer === */
-.site-footer {
+.footer {
   text-align: center;
-  padding: 48px 24px;
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 2px;
-  border-top: 1px solid var(--border);
-  margin-top: 48px;
+  padding: 72px 24px 48px;
+  background: linear-gradient(0deg, #1A0A0A 0%, #2A1414 100%);
+  color: rgba(240,214,138,0.7);
+  margin-top: 60px;
 }
+.footer-emblem { width: 72px; height: 72px; margin: 0 auto 24px; opacity: 0.6; }
+.footer-quote { font-size: 18px; letter-spacing: 4px; margin-bottom: 6px; }
+.footer-quote-sub { font-size: 14px; letter-spacing: 3px; opacity: 0.6; }
+.footer-divider {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 28px auto;
+}
+.footer-memorial { font-size: 15px; letter-spacing: 3px; margin-bottom: 8px; }
+.footer-years { font-size: 20px; letter-spacing: 6px; color: var(--gold); margin-bottom: 24px; }
+.footer-copy { font-size: 12px; opacity: 0.4; letter-spacing: 2px; }
 
 /* === Back to Top === */
 .back-to-top {
   display: block;
   text-align: center;
   padding: 20px;
-  color: var(--muted);
+  color: rgba(240,214,138,0.5);
   font-size: 13px;
   text-decoration: none;
   letter-spacing: 2px;
 }
-.back-to-top:hover { color: var(--red-deep); }
+.back-to-top:hover { color: var(--gold); }
 
 /* === Responsive === */
 @media (max-width: 640px) {
@@ -965,9 +974,20 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 </div><!-- /.wrapper -->
 </main>
 
-<footer class="site-footer">
-  <p>谨以此文纪念李庆同志</p>
-  <p style="margin-top:8px;">革命的一生 · 战斗的一生 · 清正廉洁、任劳任怨、勤奋工作的一生</p>
+<footer class="footer">
+  <div class="party-emblem footer-emblem" aria-label="中国共产党党徽">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22 6 L60 6 Q62 6 62 8 L62 22 Q62 24 60 24 L22 24 Q20 24 20 22 L20 8 Q20 6 22 6 Z" fill="#D4A843"/>
+      <rect x="38" y="22" width="6" height="48" rx="2" fill="#D4A843"/>
+      <path d="M16 64 Q10 48 12 34 Q14 22 24 14 Q28 12 26 16 Q20 24 18 34 Q16 44 20 58 Z" fill="#D4A843" stroke="#D4A843" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <p class="footer-quote">革命的一生 · 战斗的一生</p>
+  <p class="footer-quote-sub">清正廉洁、任劳任怨、勤奋工作的一生</p>
+  <div class="footer-divider"></div>
+  <p class="footer-memorial">谨以此站纪念李庆同志</p>
+  <p class="footer-years">1917 — 1999</p>
+  <p class="footer-copy">&copy; 2026 liqing.space</p>
   <a href="#nav" class="back-to-top">&#8593; 返回顶部</a>
 </footer>
 
