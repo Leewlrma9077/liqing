@@ -475,8 +475,9 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 }
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
+  margin: 24px 0;
 }
 .photo-item {
   border: 1px solid var(--border);
@@ -484,9 +485,12 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   overflow: hidden;
   background: #FAF7F0;
   cursor: pointer;
-  transition: box-shadow 0.2s;
+  transition: transform 0.4s, box-shadow 0.4s;
 }
-.photo-item:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+.photo-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
 .photo-item img {
   width: 100%;
   height: auto;
@@ -545,6 +549,48 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   .site-nav a { padding: 10px 10px; font-size: 12px; letter-spacing: 1px; }
   .photo-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
 }
+
+/* === Lightbox === */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lb-close {
+  position: absolute;
+  top: 24px; right: 32px;
+  background: none; border: none;
+  color: #fff; font-size: 40px;
+  cursor: pointer; z-index: 10;
+  transition: color 0.3s;
+}
+.lb-close:hover { color: var(--gold); }
+.lb-prev, .lb-next {
+  position: absolute;
+  top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  font-size: 36px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+  border-radius: 4px;
+}
+.lb-prev:hover, .lb-next:hover { background: rgba(212,168,67,0.3); }
+.lb-prev { left: 24px; }
+.lb-next { right: 24px; }
+.lb-content { text-align: center; max-width: 90vw; max-height: 85vh; }
+.lb-content img { max-width: 90vw; max-height: 75vh; object-fit: contain; }
+#lbCaption { color: rgba(255,255,255,0.7); margin-top: 16px; font-size: 15px; letter-spacing: 2px; }
 </style>
 </head>
 <body>
@@ -828,11 +874,11 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <div class="photo-section">
     <h3>李庆同志肖像</h3>
     <div class="photo-grid">
-      <figure class="photo-item" data-full="images/full_右一为李庆.webp">
+      <figure class="photo-item" data-full="images/full_右一为李庆.webp" data-caption="李庆同志（右一）">
         <img src="images/thumb_右一为李庆.webp" alt="李庆同志（右一）" loading="lazy">
         <figcaption>李庆同志（右一）</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_画面中间为李庆.webp">
+      <figure class="photo-item" data-full="images/full_画面中间为李庆.webp" data-caption="李庆同志（画面中间）">
         <img src="images/thumb_画面中间为李庆.webp" alt="李庆同志（画面中间）" loading="lazy">
         <figcaption>李庆同志（画面中间）</figcaption>
       </figure>
@@ -842,31 +888,31 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <div class="photo-section">
     <h3>李庆同志在不同场合</h3>
     <div class="photo-grid">
-      <figure class="photo-item" data-full="images/full_画面右侧.webp">
+      <figure class="photo-item" data-full="images/full_画面右侧.webp" data-caption="李庆同志（画面右侧）">
         <img src="images/thumb_画面右侧.webp" alt="李庆同志（画面右侧）" loading="lazy">
         <figcaption>李庆同志（画面右侧）</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_右一.webp">
+      <figure class="photo-item" data-full="images/full_右一.webp" data-caption="李庆同志（右一）">
         <img src="images/thumb_右一.webp" alt="李庆同志（右一）" loading="lazy">
         <figcaption>李庆同志（右一）</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_画面右1.webp">
+      <figure class="photo-item" data-full="images/full_画面右1.webp" data-caption="李庆同志（画面右一）">
         <img src="images/thumb_画面右1.webp" alt="李庆同志（画面右一）" loading="lazy">
         <figcaption>李庆同志（画面右一）</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_IMG_3985.webp">
+      <figure class="photo-item" data-full="images/full_IMG_3985.webp" data-caption="李庆同志">
         <img src="images/thumb_IMG_3985.webp" alt="李庆同志" loading="lazy">
         <figcaption>李庆同志</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_IMG_3986.webp">
+      <figure class="photo-item" data-full="images/full_IMG_3986.webp" data-caption="李庆同志">
         <img src="images/thumb_IMG_3986.webp" alt="李庆同志" loading="lazy">
         <figcaption>李庆同志</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_image0000001A.webp">
+      <figure class="photo-item" data-full="images/full_image0000001A.webp" data-caption="李庆同志">
         <img src="images/thumb_image0000001A.webp" alt="李庆同志历史照片" loading="lazy">
         <figcaption>李庆同志</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_image0000002A.webp">
+      <figure class="photo-item" data-full="images/full_image0000002A.webp" data-caption="李庆同志">
         <img src="images/thumb_image0000002A.webp" alt="李庆同志历史照片" loading="lazy">
         <figcaption>李庆同志</figcaption>
       </figure>
@@ -876,19 +922,19 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <div class="photo-section">
     <h3>历史资料图片</h3>
     <div class="photo-grid">
-      <figure class="photo-item" data-full="images/full_001.webp">
+      <figure class="photo-item" data-full="images/full_001.webp" data-caption="历史资料（一）">
         <img src="images/thumb_001.webp" alt="历史资料" loading="lazy">
         <figcaption>历史资料（一）</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_002.webp">
+      <figure class="photo-item" data-full="images/full_002.webp" data-caption="历史资料（二）">
         <img src="images/thumb_002.webp" alt="历史资料" loading="lazy">
         <figcaption>历史资料（二）</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_003.webp">
+      <figure class="photo-item" data-full="images/full_003.webp" data-caption="历史资料（三）">
         <img src="images/thumb_003.webp" alt="历史资料" loading="lazy">
         <figcaption>历史资料（三）</figcaption>
       </figure>
-      <figure class="photo-item" data-full="images/full_8x40-1.webp">
+      <figure class="photo-item" data-full="images/full_8x40-1.webp" data-caption="历史照片">
         <img src="images/thumb_8x40-1.webp" alt="历史照片" loading="lazy">
         <figcaption>历史照片</figcaption>
       </figure>
@@ -1169,6 +1215,76 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
         track.scrollBy({ left: scrollOffset, behavior: 'smooth' });
       }
     });
+  });
+})();
+</script>
+
+<!-- ═══════════════════ LIGHTBOX ═══════════════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="关闭">&times;</button>
+  <button class="lb-prev" id="lbPrev" aria-label="上一张">&#10094;</button>
+  <button class="lb-next" id="lbNext" aria-label="下一张">&#10095;</button>
+  <div class="lb-content">
+    <img id="lbImage" src="" alt="">
+    <p id="lbCaption"></p>
+  </div>
+</div>
+
+<script>
+// === Photo Lightbox ===
+(function() {
+  var lightbox = document.getElementById('lightbox');
+  var lbImage = document.getElementById('lbImage');
+  var lbCaption = document.getElementById('lbCaption');
+  var photos = document.querySelectorAll('.photo-item');
+  var currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    var photo = photos[index];
+    lbImage.src = photo.dataset.full;
+    lbCaption.textContent = photo.dataset.caption;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function navigate(direction) {
+    currentIndex = (currentIndex + direction + photos.length) % photos.length;
+    var photo = photos[currentIndex];
+    lbImage.src = photo.dataset.full;
+    lbCaption.textContent = photo.dataset.caption;
+  }
+
+  photos.forEach(function(photo, i) {
+    photo.addEventListener('click', function() { openLightbox(i); });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', function() { navigate(-1); });
+  document.getElementById('lbNext').addEventListener('click', function() { navigate(1); });
+
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+
+  // Touch swipe for mobile
+  var touchStartX = 0;
+  lightbox.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; });
+  lightbox.addEventListener('touchend', function(e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
   });
 })();
 </script>
