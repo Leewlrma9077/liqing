@@ -78,70 +78,116 @@ body {
 
 /* === Hero === */
 .hero {
-  background: linear-gradient(180deg, var(--red-darker) 0%, var(--red-dark) 50%, #7a3b1e 85%, var(--gold-dark) 100%);
-  color: #F5F0E0;
-  text-align: center;
-  padding: 80px 24px 60px;
   position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  background: linear-gradient(180deg, #3D1C1C 0%, #5A2020 40%, #1A0A0A 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   overflow: hidden;
 }
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="2" fill="rgba(255,255,255,0.06)"/><circle cx="65" cy="15" r="1.5" fill="rgba(255,255,255,0.04)"/><circle cx="80" cy="60" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="10" cy="75" r="1.5" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="80" r="2" fill="rgba(255,255,255,0.03)"/></svg>');
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 2px,
+    rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+#particleCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
 }
-.hero-emblem {
-  margin-bottom: 20px;
+.hero-content {
   position: relative;
+  z-index: 2;
 }
-.hero-emblem svg {
-  width: 80px;
-  height: 80px;
+.party-emblem {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px;
+  animation: emblem-glow 3s ease-in-out infinite;
 }
-.hero h1 {
-  font-size: 52px;
+.party-emblem svg { width: 100%; height: 100%; }
+@keyframes emblem-glow {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(212,168,67,0.4)); }
+  50% { filter: drop-shadow(0 0 28px rgba(212,168,67,0.8)); }
+}
+.hero-name {
+  font-size: 68px;
   font-weight: 900;
-  letter-spacing: 8px;
-  margin-bottom: 8px;
-  position: relative;
+  letter-spacing: 16px;
+  background: linear-gradient(180deg, #F0D68A 0%, #D4A843 40%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 2px 8px rgba(180,130,50,0.3));
 }
-.hero .sub {
-  font-size: 20px;
-  letter-spacing: 4px;
-  opacity: 0.9;
-  position: relative;
+.hero-sub {
+  font-size: 22px;
+  letter-spacing: 6px;
+  color: rgba(240,214,138,0.85);
+  margin-bottom: 20px;
 }
-.hero .honorary {
+.hero-honorary {
   display: inline-block;
-  margin-top: 14px;
-  padding: 6px 22px;
-  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 28px;
+  border: 1px solid rgba(212,168,67,0.4);
   border-radius: 4px;
-  font-size: 14px;
-  letter-spacing: 4px;
-  opacity: 0.85;
-  position: relative;
+  font-size: 15px;
+  letter-spacing: 6px;
+  color: rgba(240,214,138,0.8);
+  margin-bottom: 18px;
 }
-.hero .dates {
-  margin-top: 16px;
-  font-size: 16px;
-  letter-spacing: 3px;
-  opacity: 0.7;
-  position: relative;
+.hero-dates {
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: rgba(200,180,140,0.6);
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  animation: breathe 2s ease-in-out infinite;
+}
+.scroll-arrow {
+  color: rgba(212,168,67,0.6);
+  font-size: 24px;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 1; transform: translateX(-50%) translateY(10px); }
 }
 
 /* === Navigation === */
 .site-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
-  background: rgba(61, 28, 28, 0.97);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--gold-dark);
+  background: rgba(29, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(212,168,67,0.25);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  transform: translateY(-100%);
+  transition: transform 0.35s ease;
+}
+.site-nav.visible {
+  transform: translateY(0);
 }
 .site-nav ul {
   display: flex;
@@ -154,17 +200,22 @@ body {
 .site-nav li { flex-shrink: 0; }
 .site-nav a {
   display: block;
-  padding: 12px 14px;
+  padding: 14px 16px;
   color: #E8D5A3;
   text-decoration: none;
   font-size: 14px;
   letter-spacing: 2px;
-  transition: color 0.2s, background 0.2s;
+  transition: color 0.2s, background 0.2s, border-bottom 0.2s;
+  border-bottom: 2px solid transparent;
 }
 .site-nav a:hover,
 .site-nav a:focus {
   color: #FFF;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.06);
+}
+.site-nav a.active {
+  color: var(--gold-light);
+  border-bottom: 2px solid var(--gold);
 }
 
 /* === Info Grid === */
@@ -192,6 +243,14 @@ body {
   font-size: 13px;
   letter-spacing: 1px;
   color: var(--muted);
+  transition: background 0.25s, color 0.25s, transform 0.25s, border-color 0.25s;
+  cursor: default;
+}
+.tag:hover {
+  background: var(--red-deep);
+  border-color: var(--red-deep);
+  color: #FFF5E8;
+  transform: translateY(-1px);
 }
 
 /* === Timeline === */
@@ -265,6 +324,7 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   white-space: nowrap;
 }
 .cv-table tr:nth-child(even) td { background: #FDFAF5; }
+.cv-table tbody tr:hover td { background: #FDF3E0; }
 
 /* === Photo Section === */
 .photo-section { margin: 24px 0; }
@@ -337,7 +397,11 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 
 /* === Responsive === */
 @media (max-width: 640px) {
-  .hero h1 { font-size: 32px; letter-spacing: 4px; }
+  .hero-name { font-size: 36px; letter-spacing: 8px; }
+  .hero-sub { font-size: 17px; letter-spacing: 4px; }
+  .hero-honorary { font-size: 13px; padding: 6px 20px; letter-spacing: 4px; }
+  .hero-dates { font-size: 13px; letter-spacing: 2px; }
+  .party-emblem { width: 90px; height: 90px; }
   .card { padding: 24px 20px; }
   .card h2 { font-size: 22px; letter-spacing: 2px; }
   .info-grid { grid-template-columns: 90px 1fr; }
@@ -349,23 +413,29 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 <body>
 
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
-<header class="hero">
-  <div class="hero-emblem">
-    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <!-- Sickle (镰刀) -->
-      <path d="M16 64 Q10 48 12 34 Q14 22 24 14 Q28 12 26 16 Q20 24 18 34 Q16 44 20 58 Z"
-            fill="#D4A843" stroke="#D4A843" stroke-width="0.5"/>
-      <!-- Hammer handle (锤柄) -->
-      <rect x="38" y="22" width="6" height="48" rx="2" fill="#D4A843"/>
-      <!-- Hammer head (锤头) -->
-      <path d="M22 6 L60 6 Q62 6 62 8 L62 22 Q62 24 60 24 L22 24 Q20 24 20 22 L20 8 Q20 6 22 6 Z"
-            fill="#D4A843"/>
-    </svg>
+<header class="hero" id="hero">
+  <canvas id="particleCanvas"></canvas>
+  <div class="hero-content">
+    <div class="party-emblem" aria-label="中国共产党党徽">
+      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hammer head (锤头) -->
+        <path d="M22 6 L60 6 Q62 6 62 8 L62 22 Q62 24 60 24 L22 24 Q20 24 20 22 L20 8 Q20 6 22 6 Z"
+              fill="#D4A843"/>
+        <!-- Hammer handle (锤柄) -->
+        <rect x="38" y="22" width="6" height="48" rx="2" fill="#D4A843"/>
+        <!-- Sickle (镰刀) -->
+        <path d="M16 64 Q10 48 12 34 Q14 22 24 14 Q28 12 26 16 Q20 24 18 34 Q16 44 20 58 Z"
+              fill="#D4A843" stroke="#D4A843" stroke-width="0.5"/>
+      </svg>
+    </div>
+    <h1 class="hero-name">李 庆</h1>
+    <div class="hero-sub">中国共产党的忠诚战士</div>
+    <div class="hero-honorary">离休老红军</div>
+    <div class="hero-dates">1917年10月 — 1999年12月21日 · 享年83岁</div>
   </div>
-  <h1>李 庆</h1>
-  <div class="sub">中国共产党的忠诚战士</div>
-  <div class="honorary">离休老红军</div>
-  <div class="dates">1917年10月 — 1999年12月21日 · 享年83岁</div>
+  <div class="scroll-hint">
+    <span class="scroll-arrow">&#x25BC;</span>
+  </div>
 </header>
 
 <!-- ═══════════════════════════════ NAVIGATION ═══════════════════════════════ -->
@@ -701,6 +771,164 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
       section.classList.add('visible');
     });
   }
+})();
+</script>
+
+<script>
+// === Canvas Particle System ===
+(function() {
+  var canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var stars = [];
+  var mouseX = 0, mouseY = 0;
+  var PARTICLE_COUNT = 100;
+  var STAR_COUNT = 10;
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  document.addEventListener('mousemove', function(e) {
+    mouseX = (e.clientX / canvas.width - 0.5) * 2;
+    mouseY = (e.clientY / canvas.height - 0.5) * 2;
+  });
+
+  // Golden particles
+  for (var i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2.5 + 0.5,
+      speedY: Math.random() * 0.4 + 0.1,
+      speedX: Math.random() * 0.3 - 0.15,
+      opacity: Math.random() * 0.6 + 0.2
+    });
+  }
+
+  // Red pentagram stars
+  for (var j = 0; j < STAR_COUNT; j++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 6 + 4,
+      speedY: Math.random() * 0.3 + 0.05,
+      speedX: Math.random() * 0.2 - 0.1,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: Math.random() * 0.005 - 0.0025,
+      opacity: Math.random() * 0.3 + 0.1
+    });
+  }
+
+  function drawStar(ctx, x, y, size, rotation, opacity) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(rotation);
+    ctx.fillStyle = 'rgba(200,40,40,' + opacity + ')';
+    ctx.beginPath();
+    for (var i = 0; i < 5; i++) {
+      var angle = (i * Math.PI * 2) / 5 - Math.PI / 2;
+      var outerX = Math.cos(angle) * size;
+      var outerY = Math.sin(angle) * size;
+      if (i === 0) ctx.moveTo(outerX, outerY);
+      else ctx.lineTo(outerX, outerY);
+      var innerAngle = angle + Math.PI / 5;
+      var innerX = Math.cos(innerAngle) * size * 0.4;
+      var innerY = Math.sin(innerAngle) * size * 0.4;
+      ctx.lineTo(innerX, innerY);
+    }
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (var p = 0; p < particles.length; p++) {
+      var pt = particles[p];
+      pt.y -= pt.speedY;
+      pt.x += pt.speedX + mouseX * 0.3;
+      if (pt.y < -10) { pt.y = canvas.height + 10; pt.x = Math.random() * canvas.width; }
+      if (pt.x < -10) pt.x = canvas.width + 10;
+      if (pt.x > canvas.width + 10) pt.x = -10;
+
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, pt.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212,168,67,' + pt.opacity + ')';
+      ctx.fill();
+    }
+
+    for (var s = 0; s < stars.length; s++) {
+      var st = stars[s];
+      st.y -= st.speedY;
+      st.x += st.speedX + mouseX * 0.15;
+      st.rotation += st.rotSpeed;
+      if (st.y < -20) { st.y = canvas.height + 20; st.x = Math.random() * canvas.width; }
+
+      drawStar(ctx, st.x, st.y, st.size, st.rotation, st.opacity);
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
+<script>
+// === Navigation scroll behavior ===
+(function() {
+  var nav = document.getElementById('nav');
+  if (!nav) return;
+  var hero = document.getElementById('hero');
+  var navLinks = nav.querySelectorAll('a');
+  var sections = [];
+
+  // Collect all sections that nav links point to
+  navLinks.forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      var section = document.getElementById(href.slice(1));
+      if (section) sections.push({ link: link, section: section });
+    }
+  });
+
+  // Show/hide nav based on hero visibility
+  var navObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        nav.classList.remove('visible');
+      } else {
+        nav.classList.add('visible');
+      }
+    });
+  }, { threshold: 0 });
+
+  if (hero) {
+    navObserver.observe(hero);
+  } else {
+    // If no hero, show nav immediately
+    nav.classList.add('visible');
+  }
+
+  // Scroll spy: highlight active nav link
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function(link) { link.classList.remove('active'); });
+        var activeLink = nav.querySelector('a[href="#' + entry.target.id + '"]');
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -40px 0px' });
+
+  sections.forEach(function(item) {
+    sectionObserver.observe(item.section);
+  });
 })();
 </script>
 
