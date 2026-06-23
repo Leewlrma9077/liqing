@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>李庆同志 — 中国共产党的忠诚战士</title>
-<meta name="description" content="李庆同志（1917-1999），离休老红军，原河南省农业厅副厅长，中国棉花学会副理事长。革命的一生，战斗的一生。">
+<meta name="description" content="李庆同志（1917-1999），中国共产党的忠诚战士，原河南省农业厅副厅长，中国棉花学会副理事长。革命的一生，战斗的一生。">
 <style>
 /* === CSS Custom Properties === */
 :root {
@@ -139,7 +139,7 @@ body {
   margin: 0 auto 20px;
   animation: emblem-glow 3s ease-in-out infinite;
 }
-.party-emblem svg { width: 100%; height: 100%; }
+.party-emblem img { width: 100%; height: auto; display: block; }
 @keyframes emblem-glow {
   0%, 100% { filter: drop-shadow(0 0 12px rgba(212,168,67,0.4)); }
   50% { filter: drop-shadow(0 0 28px rgba(212,168,67,0.8)); }
@@ -665,20 +665,10 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <canvas id="particleCanvas"></canvas>
   <div class="hero-content">
     <div class="party-emblem" aria-label="中国共产党党徽">
-      <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <!-- Hammer head (锤头) -->
-        <path d="M22 6 L60 6 Q62 6 62 8 L62 22 Q62 24 60 24 L22 24 Q20 24 20 22 L20 8 Q20 6 22 6 Z"
-              fill="#D4A843"/>
-        <!-- Hammer handle (锤柄) -->
-        <rect x="38" y="22" width="6" height="48" rx="2" fill="#D4A843"/>
-        <!-- Sickle (镰刀) -->
-        <path d="M16 64 Q10 48 12 34 Q14 22 24 14 Q28 12 26 16 Q20 24 18 34 Q16 44 20 58 Z"
-              fill="#D4A843" stroke="#D4A843" stroke-width="0.5"/>
-      </svg>
+      <img src="images/emblem.webp" alt="中国共产党党徽" width="200" height="200">
     </div>
     <h1 class="hero-name">李 庆</h1>
     <div class="hero-sub">中国共产党的忠诚战士</div>
-    <div class="hero-honorary">离休老红军</div>
     <div class="hero-dates">1917年10月 — 1999年12月21日 · 享年83岁</div>
   </div>
   <div class="scroll-hint">
@@ -720,7 +710,6 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
     <dt>离休时间</dt><dd>1983年11月（经中共河南省委批准）</dd>
     <dt>逝世</dt><dd>1999年12月21日10时5分，于郑州逝世，享年83岁</dd>
     <dt>最后职务</dt><dd>中共河南省农业厅党组成员、副厅长</dd>
-    <dt>荣誉称号</dt><dd>离休老红军</dd>
   </dl>
   <div class="tags">
     <span class="tag">老红军</span>
@@ -1051,11 +1040,7 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 
 <footer class="footer">
   <div class="party-emblem footer-emblem" aria-label="中国共产党党徽">
-    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-      <path d="M22 6 L60 6 Q62 6 62 8 L62 22 Q62 24 60 24 L22 24 Q20 24 20 22 L20 8 Q20 6 22 6 Z" fill="#D4A843"/>
-      <rect x="38" y="22" width="6" height="48" rx="2" fill="#D4A843"/>
-      <path d="M16 64 Q10 48 12 34 Q14 22 24 14 Q28 12 26 16 Q20 24 18 34 Q16 44 20 58 Z" fill="#D4A843" stroke="#D4A843" stroke-width="0.5"/>
-    </svg>
+    <img src="images/emblem.webp" alt="中国共产党党徽" width="120" height="120">
   </div>
   <p class="footer-quote">革命的一生 · 战斗的一生</p>
   <p class="footer-quote-sub">清正廉洁、任劳任怨、勤奋工作的一生</p>
