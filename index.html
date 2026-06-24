@@ -626,6 +626,7 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   margin-bottom: 24px;
   filter: drop-shadow(0 2px 6px rgba(180,130,50,0.35));
 }
+.footer-visits { font-size: 13px; letter-spacing: 2px; margin-bottom: 12px; opacity: 0.55; }
 .footer-copy { font-size: 12px; opacity: 0.4; letter-spacing: 2px; }
 
 /* === Back to Top === */
@@ -1097,6 +1098,7 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   <div class="footer-divider"></div>
   <p class="footer-memorial">谨以此站纪念李庆同志</p>
   <p class="footer-years">1917 — 1999</p>
+  <p class="footer-visits">访问人次：<span id="visit-count">—</span></p>
   <p class="footer-copy">&copy; 2026 liqing.space</p>
   <a href="#nav" class="back-to-top">&#8593; 返回顶部</a>
 </footer>
@@ -1440,6 +1442,18 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
     var diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) navigate(diff > 0 ? 1 : -1);
   });
+})();
+</script>
+
+<!-- Visit counter -->
+<script>
+(function() {
+  var counterEl = document.getElementById('visit-count');
+  if (!counterEl) return;
+  fetch('https://api.countapi.xyz/hit/liqing-space/visits')
+    .then(function(res) { return res.json(); })
+    .then(function(data) { counterEl.textContent = data.value; })
+    .catch(function() { counterEl.textContent = '—'; });
 })();
 </script>
 
