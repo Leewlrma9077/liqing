@@ -1450,9 +1450,17 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 (function() {
   var counterEl = document.getElementById('visit-count');
   if (!counterEl) return;
-  fetch('https://api.countapi.xyz/hit/liqing-space/visits')
+  // Avoid double-counting if user already visited this page load
+  var counted = sessionStorage.getItem('liqing-counted');
+  var url = counted
+    ? 'https://api.counterapi.dev/v1/liqing-space/visits'
+    : 'https://api.counterapi.dev/v1/liqing-space/visits/up';
+  fetch(url)
     .then(function(res) { return res.json(); })
-    .then(function(data) { counterEl.textContent = data.value; })
+    .then(function(data) {
+      counterEl.textContent = data.count;
+      if (!counted) sessionStorage.setItem('liqing-counted', '1');
+    })
     .catch(function() { counterEl.textContent = '—'; });
 })();
 </script>
