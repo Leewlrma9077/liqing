@@ -543,10 +543,21 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
 .char-subsection {
   margin: 28px 0;
 }
+.char-subsection .char-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
 .char-subsection .char-icon {
-  width: 28px;
+  width: 36px;
   height: auto;
-  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+.char-subsection .char-head h3 {
+  margin: 0;
+  padding-left: 0;
+  border-left: none;
 }
 
 /* === Writings Table === */
@@ -960,20 +971,23 @@ blockquote footer { margin-top: 8px; font-size: 14px; color: var(--muted); font-
   </blockquote>
 
   <article class="char-subsection">
-    <img src="images/star-small.webp" class="char-icon" alt="">
-    <h3>政治品格</h3>
+    <div class="char-head">
+      <img src="images/star-small.webp" class="char-icon" alt=""><h3>政治品格</h3>
+    </div>
     <p>在党的领导下，他努力学习马列主义、毛泽东思想和邓小平理论，具有丰富的实践经验。他对党的事业忠心耿耿，任劳任怨。他顾全大局、胸怀博大、不计较个人得失。在1989年春夏之交的政治风波中，他立场坚定、旗帜鲜明，坚决拥护党中央的决策。</p>
   </article>
 
   <article class="char-subsection">
-    <img src="images/star-small.webp" class="char-icon" alt="">
-    <h3>工作作风</h3>
+    <div class="char-head">
+      <img src="images/star-small.webp" class="char-icon" alt=""><h3>工作作风</h3>
+    </div>
     <p>他作风扎实，对工作严肃认真，实事求是，善于把握大局。他经常深入基层、深入田间地头，与农民交朋友，被誉为棉花专家。</p>
   </article>
 
   <article class="char-subsection">
-    <img src="images/star-small.webp" class="char-icon" alt="">
-    <h3>为人品德</h3>
+    <div class="char-head">
+      <img src="images/star-small.webp" class="char-icon" alt=""><h3>为人品德</h3>
+    </div>
     <p>他为人正派，光明磊落，平易近人，关心同志。他长期在领导岗位上工作，对自己以及亲属要求严格，生活俭朴，不搞特殊，保持了党的优良传统和作风，深受广大干部和群众的爱戴。</p>
   </article>
 
